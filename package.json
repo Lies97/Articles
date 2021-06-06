@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "build": "npm run write:env -s && ng build --prod",
+    "build": "ngx-scripts env npm_package_version && ng build --prod",
     "start": "node server.js",
     "serve:sw": "npm run build -s && npx http-server ./dist -p 4200",
     "lint": "ng lint && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
@@ -16,7 +16,7 @@
     "write:env": "ngx-scripts env npm_package_version",
     "prettier": "prettier --write \"./{src,e2e}/**/*.{ts,js,html,scss}\"",
     "prettier:check": "prettier --list-different \"./{src,e2e}/**/*.{ts,js,html,scss}\"",
-    "postinstall": "npm run write:env -s && ng build  --aot --prod",
+    "postinstall": "ngx-scripts env npm_package_version && ng build  --aot --prod",
     "generate": "ng generate"
   },
   "dependencies": {
