@@ -1,0 +1,130 @@
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+
+$ltr: "[dir=ltr]";
+$rtl: "[dir=rtl]";
+
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #868e96;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+$blue: #0073dd;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #28a745;
+$teal: #20c997;
+$cyan: #17a2b8;
+
+$primary: #0d6efd;
+$dark: #6c757d;
+$light: #fff;
+$theme-colors: (
+  primary: $primary,
+  secondary: $gray-600,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $light,
+  dark: $dark,
+);
+
+// Spacing
+$spacer: 1rem;
+$spacers: ();
+$spacers: map-merge(
+  (
+    0: 0,
+    //4
+    1: $spacer / 4,
+    //8
+    2: $spacer / 2,
+    //10
+    "2-3": $spacer * 0.625,
+    //16
+    3: $spacer,
+    //20
+    "3-4": $spacer * 1.25,
+    //24
+    4: $spacer * 1.5,
+    //30
+    "4-5": $spacer * 1.875,
+    //40
+    5: $spacer * 2.5,
+    //48
+    "5-6": $spacer * 3,
+    6: (
+      $spacer * 5,
+    ),
+    7: (
+      $spacer * 8,
+    ),
+    8: (
+      $spacer * 10,
+    ),
+    9: (
+      $spacer * 11,
+    ),
+    10: (
+      $spacer * 15,
+    ),
+    "sm": (
+      $spacer * 1,
+    ),
+    "md": (
+      $spacer * 2,
+    ),
+    "lg": (
+      $spacer * 4,
+    ),
+    "xl": (
+      $spacer * 8,
+    ),
+  ),
+  $spacers
+);
+
+$opacity: ();
+$opacity: map-merge(
+  (
+    0: 0,
+    1: 0.1,
+    2: 0.2,
+    3: 0.3,
+    4: 0.4,
+    5: 0.5,
+    6: 0.6,
+    7: 0.7,
+    8: 0.8,
+    9: 0.9,
+    10: 1,
+  ),
+  $opacity
+);
+
+$sizes: ();
+$start: 1;
+$end: 1000;
+$pixel: 1px;
+$percentage: 1%;
+
+@for $i from $start through $end {
+  $sizes: map-merge(
+    (
+      "#{$i}percent": $i*$percentage,
+      "#{$i}px": $i*$pixel,
+    ),
+    $sizes
+  );
+}

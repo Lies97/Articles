@@ -1,0 +1,26 @@
+<div class="article-component container">
+  <div class="position-absolute go-back">
+    <i class="fas fa-backward color-primary" (click)="goBack()"></i>
+  </div>
+  <ng-container *ngIf="error">
+    <div class="min-h-80percent text-center">
+      <span class="color-danger">Server is under maintaince, please comeback later!</span>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="article">
+    <div class="header-wrapper">
+      <h6 class="category" *ngIf="article.title">{{ article.title.split('|')[0] }}</h6>
+      <h4 class="title" *ngIf="article.title">{{ article.title.split('|')[1] }}</h4>
+      <img
+        class="w-100 max-h-500px article-image"
+        [src]="article.coverImageUrl"
+        alt="coverImageUrl"
+        (error)="updateUrl($event)"
+      />
+    </div>
+    <div class="body-wrapper mt-4">
+      <h6>{{ article.description }}</h6>
+      <div class="mt-3" [innerHTML]="article.content"></div>
+    </div>
+  </ng-container>
+</div>
