@@ -3,10 +3,10 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(__dirname + '/dist/<FOLDER_NAME>'));
+app.use(express.static(__dirname + '/dist/articles'));
 
 app.get('/*', (req, res, next) => {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/articles/index.html'));
 });
 
 app.listen(process.env.PORT || 8000);
