@@ -26,7 +26,7 @@ $green: #28a745;
 $teal: #20c997;
 $cyan: #17a2b8;
 
-$primary: #0d6efd;
+$primary: #00416a;
 $dark: #6c757d;
 $light: #fff;
 $theme-colors: (
@@ -122,9 +122,19 @@ $percentage: 1%;
 @for $i from $start through $end {
   $sizes: map-merge(
     (
-      "#{$i}percent": $i*$percentage,
+      "#{$i}": $i*$percentage,
       "#{$i}px": $i*$pixel,
     ),
     $sizes
   );
 }
+
+$sizes: map-merge(
+  (
+    "1-of-3": $percentage *
+      (
+        100/3,
+      ),
+  ),
+  $sizes
+);

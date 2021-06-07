@@ -5,9 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared';
 import { ArticlesRoutingModule } from './articles-routing.module';
 import { ArticlesComponent } from './articles.component';
+import { MostViewedArticlesComponent } from './most-viewed-articles/most-viewed-articles.component';
 
 @NgModule({
   imports: [CommonModule, TranslateModule, SharedModule, ArticlesRoutingModule],
-  declarations: [ArticlesComponent],
+  declarations: [ArticlesComponent, MostViewedArticlesComponent],
 })
 export class ArticlesModule {}

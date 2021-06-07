@@ -1,44 +1,70 @@
-<div class="home-component container-fluid">
+<div class="articles-component container">
   <ng-container *ngIf="error">
-    <div class="min-h-80percent text-center">
+    <div class="min-h-80 text-center">
       <span class="color-danger">Server is under maintaince, please comeback later!</span>
     </div>
   </ng-container>
 
   <ng-container *ngIf="articles.length > 0 && !error">
-    <div class="row">
+    <div class="most-view-articles d-flex m-0 min-h-450px flex-wrap">
+      <div
+        class="card card-wrapper d-flex justify-content-end w-100 w-lg-26"
+        [style.background-image]="getMostViewedImg(mostViewedArticles[0].coverImageUrl)"
+        [routerLink]="['/article']"
+        [queryParams]="{ url: mostViewedArticles[0].url }"
+      >
+        <app-most-viewed-articles [article]="mostViewedArticles[0]"></app-most-viewed-articles>
+      </div>
+      <div
+        class="card card-wrapper d-flex justify-content-end w-100 w-lg-26"
+        [style.background-image]="getMostViewedImg(mostViewedArticles[1].coverImageUrl)"
+        [routerLink]="['/article']"
+        [queryParams]="{ url: mostViewedArticles[1].url }"
+      >
+        <app-most-viewed-articles [article]="mostViewedArticles[1]"></app-most-viewed-articles>
+      </div>
+      <div
+        class="card card-wrapper d-flex justify-content-end w-100 w-lg-44"
+        [style.background-image]="getMostViewedImg(mostViewedArticles[2].coverImageUrl)"
+        [routerLink]="['/article']"
+        [queryParams]="{ url: mostViewedArticles[2].url }"
+      >
+        <app-most-viewed-articles [article]="mostViewedArticles[2]"></app-most-viewed-articles>
+      </div>
+    </div>
+
+    <div class="common-articles row">
       <div
         *ngFor="
           let article of articles
-            | paginate: { itemsPerPage: articles.length, currentPage: pageNumber, totalItems: 210 }
+            | paginate: { itemsPerPage: articles.length + 3, currentPage: pageNumber, totalItems: 210 }
         "
-        class="card-wrapper mt-4 col-sm-12 col-lg-4"
+        class="card-wrapper mt-4 col-sm-12 col-lg-4 px-0"
       >
-        <div class="card p-3 w-8">
-          <h6 class="card-title text-center mb-0 min-h-38px">{{ article?.title }}</h6>
-          <img
-            [src]="article.coverImageUrl"
-            alt="Article Card"
-            class="card-img-top text-center pt-3"
-            (error)="updateUrl($event)"
-          />
-          <div class="card-body">
-            <div class="text-wrapper row">
-              <p class="mb-0 truncate card-text col-8 col-xl-9 px-0">{{ article?.description }}</p>
-              <a
-                class="card-text col-4 col-xl-3 px-0 text-right"
-                [routerLink]="['/article']"
-                [queryParams]="{ url: article?.url }"
-              >
-                Go to post.
-              </a>
+        <div class="card px-3 border-0">
+          <div class="embed-responsive embed-responsive-16by9">
+            <img
+              [src]="article.coverImageUrl"
+              alt="Article Card"
+              class="card-img-top embed-responsive-item text-center pt-3"
+              (error)="updateUrl($event)"
+            />
+          </div>
+          <div class="card-body px-0">
+            <h6 class="card-title mb-0 min-h-38px">{{ article?.title }}</h6>
+            <div class="text-wrapper">
+              <p class="my-2 truncate card-text px-0">{{ article?.description }}</p>
+              <div class="go-to-post-wrapper" [routerLink]="['/article']" [queryParams]="{ url: article?.url }">
+                <a class="card-text px-0 d-inline-block color-primary"> Go to post </a>
+                <i class="fas fa-arrow-right ml-3 color-primary"></i>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-center mt-4">
-      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    <div class="d-flex justify-content-center mt-4 fixed-bottom">
+      <pagination-controls (pageChange)="pageChanged($event)" nextLabel="" previousLabel=""></pagination-controls>
     </div>
   </ng-container>
 </div>

@@ -1,9 +1,9 @@
 @import "variables";
 
-@each $prop, $abbrev in (background: bg, color: color) {
+@each $prop, $abbrev in (background-color: bg, color: color) {
   @each $colorName, $color in $theme-colors {
     .#{$abbrev}-#{$colorName} {
-      #{$prop}: $color;
+      #{$prop}: $color !important;
     }
   }
 }

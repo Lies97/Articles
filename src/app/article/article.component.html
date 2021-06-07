@@ -1,15 +1,22 @@
 <div class="article-component container">
-  <div class="position-absolute go-back">
+  <div class="go-back">
     <i class="fas fa-backward color-primary" (click)="goBack()"></i>
   </div>
   <ng-container *ngIf="error">
-    <div class="min-h-80percent text-center">
+    <div class="min-h-80 text-center pt-4">
       <span class="color-danger">Server is under maintaince, please comeback later!</span>
     </div>
   </ng-container>
   <ng-container *ngIf="article">
-    <div class="header-wrapper">
-      <h6 class="category" *ngIf="article.title">{{ article.title }}</h6>
+    <div class="header-wrapper pt-4">
+      <div>
+        <h4 class="title mb-4" *ngIf="article.title">{{ article.title }}</h4>
+        <h4 class="title color-primary mb-4">
+          <a class="text-decoration-none" target="_blank" href="{{ article.url }}">
+            Click here to go to the original source</a
+          >
+        </h4>
+      </div>
       <img
         class="w-100 max-h-500px article-image"
         [src]="article.coverImageUrl"

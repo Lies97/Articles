@@ -12,6 +12,8 @@ import { LoadingService } from '@app/@shared/loader/loader.service';
 })
 export class ArticlesComponent implements OnInit {
   articles: Article[] = [];
+  mostViewedArticles: Article[] = [];
+
   pageNumber: number = 1;
   error: any;
   defaultImg = 'assets/defaultImage.png';
@@ -37,6 +39,10 @@ export class ArticlesComponent implements OnInit {
     this.fetchArticleService.fetchArticle(articleClone.url).valueChanges.subscribe((result: any) => {
       articleClone.coverImageUrl = result?.data?.article?.coverImageUrl;
     });
+  }
+
+  public getMostViewedImg(image: string): any {
+    return `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0 , 0, 0, 0.4)), url('${image}')`;
   }
 
   fetchArticles(): any {
@@ -68,6 +74,9 @@ export class ArticlesComponent implements OnInit {
 
           return articleClone;
         });
+
+        this.mostViewedArticles = this.articles.filter((article) => article.coverImageUrl).slice(0, 3);
+        this.articles = _.differenceBy(this.articles, this.mostViewedArticles, 'description');
       });
     });
   }
@@ -80,7 +89,6 @@ export class ArticlesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('init');
     this.route.queryParams.subscribe((params) => {
       if (params.p) {
         this.pageNumber = parseInt(params.p);
