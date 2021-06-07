@@ -1,6 +1,7 @@
-<div class="wrapper" [class.isDisabled]="isLoading">
+<div class="wrapper" [class.isDisabled]="loadingService.isLoading$ | async">
   <app-header></app-header>
   <app-loader></app-loader>
   <router-outlet></router-outlet>
+  <app-back-to-top></app-back-to-top>
   <app-footer></app-footer>
 </div>

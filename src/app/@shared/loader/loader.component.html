@@ -1,3 +1,5 @@
-<div [hidden]="!isLoading" class="loading position-fixed">
-  <i class="fas fa-cog fa-spin fa-3x"></i>
-</div>
+<ng-container *ngIf="loadingService.isLoading$ | async">
+  <div class="loading position-fixed">
+    <i class="fas fa-cog fa-spin fa-3x"></i>
+  </div>
+</ng-container>

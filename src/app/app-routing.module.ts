@@ -1,10 +1,12 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { Shell } from '@app/shell/shell.service';
+import { LoadingInterceptor } from './@shared/loader/LoadingInterceptor';
 
 const routes: Routes = [
   Shell.childRoutes([
-    { path: '', loadChildren: () => import('./home/home.module').then((m) => m.HomeModule) },
+    { path: '', loadChildren: () => import('./articles/articles.module').then((m) => m.ArticlesModule) },
     { path: 'about', loadChildren: () => import('./about/about.module').then((m) => m.AboutModule) },
     { path: 'article', loadChildren: () => import('./article/article.module').then((m) => m.ArticleModule) },
   ]),
@@ -15,6 +17,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }],
 })
 export class AppRoutingModule {}

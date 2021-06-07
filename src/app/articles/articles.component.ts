@@ -6,11 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingService } from '@app/@shared/loader/loader.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-articles',
+  templateUrl: './articles.component.html',
+  styleUrls: ['./articles.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class ArticlesComponent implements OnInit {
   articles: Article[] = [];
   pageNumber: number = 1;
   error: any;
@@ -40,16 +40,14 @@ export class HomeComponent implements OnInit {
   }
 
   fetchArticles(): any {
-    this.loadingService.setLoading(true);
     this.route.queryParams.subscribe((params) => {
       if (params.p) {
         this.pageNumber = parseInt(params.p);
       }
 
       this.fetchArticleService.fetchArticles(this.pageNumber).valueChanges.subscribe((res: any) => {
-        const { data: { articles = [] } = {}, loading, error } = res;
+        const { data: { articles = [] } = {}, error } = res;
         const newsYCombinatorUrl = `https://news.ycombinator.com`;
-        this.loadingService.setLoading(loading);
 
         if (error) {
           this.error = error;
@@ -82,6 +80,13 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log('init');
+    this.route.queryParams.subscribe((params) => {
+      if (params.p) {
+        this.pageNumber = parseInt(params.p);
+      }
+      this.router.navigate(['/articles'], { queryParams: { p: this.pageNumber } });
+    });
     this.fetchArticles();
   }
 }

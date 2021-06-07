@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home.component';
+import { ArticlesComponent } from './articles.component';
 import { Shell } from '@app/shell/shell.service';
 
 const routes: Routes = [
   Shell.childRoutes([
-    { path: '', redirectTo: 'articles?p=1', pathMatch: 'full' },
-    { path: 'articles', component: HomeComponent },
+    { path: '', redirectTo: 'articles', pathMatch: 'full' },
+    { path: 'articles', component: ArticlesComponent },
   ]),
 ];
 
@@ -16,4 +16,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [],
 })
-export class HomeRoutingModule {}
+export class ArticlesRoutingModule {}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '@app/articleModel/article';
-import { FetchArticleService } from '@app/home/fetch-article.service';
+import { FetchArticleService } from '@app/articles/fetch-article.service';
 import { Location } from '@angular/common';
 import { LoadingService } from '@app/@shared/loader/loader.service';
 
@@ -18,8 +18,7 @@ export class ArticleComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fetchArticleService: FetchArticleService,
-    private location: Location,
-    private loadingService: LoadingService
+    private location: Location
   ) {}
 
   goBack(): void {
@@ -27,16 +26,13 @@ export class ArticleComponent implements OnInit {
   }
 
   updateUrl(e: any) {
-    console.log('e', e);
     e.target.className = 'd-none';
   }
 
   fetchArticle() {
-    this.loadingService.setLoading(true);
     this.route.queryParams.subscribe((params: any) => {
       this.fetchArticleService.fetchArticle(params.url).valueChanges.subscribe((res: any) => {
         const { data: { article = [] } = {}, loading, error } = res;
-        this.loadingService.setLoading(loading);
 
         if (error) {
           this.error = error;

@@ -7,12 +7,6 @@ import { LoadingService } from '@app/@shared/loader/loader.service';
   styleUrls: ['./shell.component.scss'],
 })
 export class ShellComponent implements OnInit {
-  isLoading = true;
-  constructor(private loadingService: LoadingService) {}
-
-  ngOnInit() {
-    this.loadingService.isLoading.subscribe((loading) => {
-      this.isLoading = loading;
-    });
-  }
+  constructor(public loadingService: LoadingService) {}
+  ngOnInit() {}
 }

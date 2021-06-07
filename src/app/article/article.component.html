@@ -9,8 +9,7 @@
   </ng-container>
   <ng-container *ngIf="article">
     <div class="header-wrapper">
-      <h6 class="category" *ngIf="article.title">{{ article.title.split('|')[0] }}</h6>
-      <h4 class="title" *ngIf="article.title">{{ article.title.split('|')[1] }}</h4>
+      <h6 class="category" *ngIf="article.title">{{ article.title }}</h6>
       <img
         class="w-100 max-h-500px article-image"
         [src]="article.coverImageUrl"
@@ -19,7 +18,7 @@
       />
     </div>
     <div class="body-wrapper mt-4">
-      <h6>{{ article.description }}</h6>
+      <h6 class="sub-title">{{ article.description }}</h6>
       <div class="mt-3" [innerHTML]="article.content"></div>
     </div>
   </ng-container>

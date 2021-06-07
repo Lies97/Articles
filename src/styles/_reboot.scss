@@ -16,7 +16,6 @@ a {
 }
 
 .article-component {
-  min-height: calc(100vh - 136px);
   .go-back {
     left: 5%;
     cursor: pointer;
@@ -27,11 +26,18 @@ a {
   }
 }
 
-.home-component {
-  min-height: calc(100vh - 136px);
-  .back-to-top-button {
-    bottom: 0;
+.back-to-top-component {
+  right: 2%;
+  bottom: 0;
+  button:hover {
+    color: #fff;
   }
+}
+
+.home-component,
+.article-component,
+.about-component {
+  min-height: calc(100vh - 136px);
 }
 
 .card-img-top {
@@ -57,7 +63,6 @@ a {
 }
 
 .truncate {
-  max-width: 85%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
