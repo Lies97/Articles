@@ -2,7 +2,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { Shell } from '@app/shell/shell.service';
-import { LoadingInterceptor } from './@shared/loader/LoadingInterceptor';
+import { LoadingInterceptor } from './loadingInterceptor';
 
 const routes: Routes = [
   Shell.childRoutes([
