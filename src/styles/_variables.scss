@@ -128,12 +128,3 @@ $percentage: 1%;
     $sizes
   );
 }
-
-$sizes: map-merge(
-  (
-    "1-of-3": (
-      100/3,
-    ) * $percentage,
-  ),
-  $sizes
-);
