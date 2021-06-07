@@ -131,10 +131,9 @@ $percentage: 1%;
 
 $sizes: map-merge(
   (
-    "1-of-3": $percentage *
-      (
-        100/3,
-      ),
+    "1-of-3": (
+      100/3,
+    ) * $percentage,
   ),
   $sizes
 );
