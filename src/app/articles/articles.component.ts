@@ -38,7 +38,6 @@ export class ArticlesComponent implements OnInit {
   fetchSingleArticleToGetCoverImageUrl(articleClone: any): any {
     this.fetchArticleService.fetchArticle(articleClone.url).valueChanges.subscribe((result: any) => {
       articleClone.coverImageUrl = result?.data?.article?.coverImageUrl;
-      articleClone.title = result?.data?.article?.title;
     });
   }
 
