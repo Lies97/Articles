@@ -3,8 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Article } from '@app/articleModel/article';
 import { FetchArticleService } from '@app/articles/fetch-article.service';
 import { Location } from '@angular/common';
-import { LoadingService } from '@app/@shared/loader/loader.service';
-
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',

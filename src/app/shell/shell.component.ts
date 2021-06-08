@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { LoadingService } from '@app/@shared/loader/loader.service';
 
 @Component({
@@ -6,14 +6,9 @@ import { LoadingService } from '@app/@shared/loader/loader.service';
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss'],
 })
-export class ShellComponent implements OnInit {
-  // @ViewChild('wrapper') public myScrollContainer: ElementRef;
-  // isScrolled = false;
-  // scrollbarTop: number;
-
-  constructor(public loadingService: LoadingService) {}
-  ngOnInit() {}
-  // ngAfterViewInit() {
-  //   this.isScrolled = this.myScrollContainer.nativeElement.offSetTop > 56 ? true : false ;
-  // }
+export class ShellComponent implements AfterViewInit {
+  constructor(public loadingService: LoadingService, private cdr: ChangeDetectorRef) {}
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
 }

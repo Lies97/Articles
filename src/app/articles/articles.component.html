@@ -41,7 +41,7 @@
         "
         class="card-wrapper mt-4 col-sm-12 col-lg-4 px-0"
       >
-        <div class="card px-3 border-0">
+        <div class="common-articles-card card px-3 border-0">
           <div class="embed-responsive embed-responsive-16by9">
             <img
               [src]="article.coverImageUrl"
@@ -54,10 +54,10 @@
             <h6 class="card-title mb-0 min-h-38px">{{ article?.title }}</h6>
             <div class="text-wrapper">
               <p class="my-2 truncate card-text px-0">{{ article?.description }}</p>
-              <div class="go-to-post-wrapper" [routerLink]="['/article']" [queryParams]="{ url: article?.url }">
+              <span class="go-to-post-wrapper" [routerLink]="['/article']" [queryParams]="{ url: article?.url }">
                 <a class="card-text px-0 d-inline-block color-primary"> Go to post </a>
                 <i class="fas fa-arrow-right ml-3 color-primary"></i>
-              </div>
+              </span>
             </div>
           </div>
         </div>

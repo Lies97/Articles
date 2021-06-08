@@ -1,6 +1,6 @@
 <div class="w-100 bg-primary min-h-48px fixed-top">
   <nav class="navbar container navbar-expand navbar-dark mb-0 py-1">
-    <a class="navbar-brand" routerLink="articles" translate>APP_NAME</a>
+    <a class="navbar-brand" [routerLink]="['/articles']" [queryParams]="{ p: 1 }" translate>APP_NAME </a>
     <button
       class="navbar-toggler"
       type="button"
