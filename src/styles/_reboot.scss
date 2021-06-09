@@ -45,7 +45,7 @@ a {
   .articles-component,
   .article-component,
   .about-component {
-    min-height: calc(100vh - 135px);
+    min-height: calc(100vh - 136px);
     margin-top: 72px;
   }
 
@@ -88,6 +88,9 @@ a {
     .common-articles {
       .card-wrapper {
         .common-articles-card {
+          img {
+            cursor: pointer;
+          }
           @include responsive_320 {
             flex-direction: row;
             .embed-responsive {

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Article, articleSchema } from '@app/articleModel/article';
+import { Article, articleSchema } from '@app/@model/article';
 import { Apollo, gql } from 'apollo-angular';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FetchArticleService {
+export class ArticleService {
   articles: Article[] = [];
 
   getQueryString(objectName: string, paramName: string, param: any): string {

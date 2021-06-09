@@ -1,14 +1,3 @@
-const goToPost = (getAlias, selector) => {
-  cy.wait(`${getAlias}`).its('response.statusCode').should('eq', 200);
-  cy.wait(2000);
-  cy.get(`${selector}`).click();
-  cy.wait(`${getAlias}`).its('response.statusCode').should('eq', 200);
-  cy.wait(2000);
-  expect(cy.url().should('include', '/article?url='));
-  cy.get('.go-back > i').click();
-  expect(cy.url().should('include', '/articles?p='));
-};
-
 const hostName = 'https://articles-angular-app.herokuapp.com';
 const apiUrl = 'https://iwa-test.herokuapp.com/graphql';
 
@@ -18,7 +7,7 @@ describe('Articles', () => {
   });
 
   it('should renders Article list', () => {
-    cy.location('pathname').should('includes', 'articles');
+    expect(cy.url().should('include', '/article?p='));
   });
 
   it('should hide the back to top button when the page on top', () => {
@@ -50,14 +39,14 @@ describe('Articles', () => {
       cy.wait(`@getArticles`).its('response.statusCode').should('eq', 200);
       cy.wait(2000);
       ++pageNumber;
-      expect(cy.url().should('include', `/articles?p=${pageNumber}`));
+      expect(cy.url().should('include', `/article?p=${pageNumber}`));
 
       const prevButton = cy.get('.ngx-pagination > .pagination-previous');
       prevButton.click();
       cy.wait(`@getArticles`).its('response.statusCode').should('eq', 200);
       cy.wait(2000);
       --pageNumber;
-      expect(cy.url().should('include', `/articles?p=${pageNumber}`));
+      expect(cy.url().should('include', `/article?p=${pageNumber}`));
     });
   });
 
@@ -69,12 +58,12 @@ describe('Articles', () => {
     cy.wait(`@getArticles`).its('response.statusCode').should('eq', 200);
     cy.wait(2000);
     const pageNumber = 4;
-    expect(cy.url().should('include', `/articles?p=${pageNumber}`));
+    expect(cy.url().should('include', `/article?p=${pageNumber}`));
   });
 
-  it('should redirect to article when clicking go to post or clicking on image on most viewed zone', () => {
-    cy.intercept(apiUrl).as('getArticles');
-    goToPost('@getArticles', '.most-view-articles > .card:first');
-    goToPost('@getArticles', '.go-to-post-wrapper:first');
+  it('should redirect to article detail when clicking on image', () => {
+    cy.get('.most-view-articles > .card:first').click();
+    cy.wait(2000);
+    expect(cy.url().should('include', '/article/detail?url='));
   });
 });

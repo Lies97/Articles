@@ -23,6 +23,14 @@
       "@core/*": ["src/app/@core/*"],
       "@shared": ["src/app/@shared"],
       "@shared/*": ["src/app/@shared/*"],
+      "@model": ["src/app/@model"],
+      "@model/*": ["src/app/@model/*"],
+      "@service": ["src/app/@service"],
+      "@service/*": ["src/app/@service/*"],
+      "@helper": ["src/app/@helper"],
+      "@helper/*": ["src/app/@helper/*"],
+      "@module": ["src/app/@module"],
+      "@module/*": ["src/app/@module/*"],
       "@env/*": ["src/environments/*"]
     }
   },

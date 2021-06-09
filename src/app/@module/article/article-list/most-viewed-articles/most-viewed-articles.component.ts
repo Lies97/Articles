@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from '@app/articleModel/article';
+import { Article } from '@model';
 
 @Component({
   selector: 'app-most-viewed-articles',

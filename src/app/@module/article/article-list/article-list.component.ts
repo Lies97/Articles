@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from '@app/articleModel/article';
-import { FetchArticleService } from './fetch-article.service';
+import { Article } from '@model/article';
 import _ from 'lodash';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingService } from '@app/@shared/loader/loader.service';
+import { ArticleService } from '@service';
 
 @Component({
-  selector: 'app-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss'],
+  selector: 'app-article-list',
+  templateUrl: './article-list.component.html',
+  styleUrls: ['./article-list.component.scss'],
 })
-export class ArticlesComponent implements OnInit {
+export class ArticleListComponent implements OnInit {
   articles: Article[] = [];
   mostViewedArticles: Article[] = [];
 
@@ -20,23 +19,24 @@ export class ArticlesComponent implements OnInit {
 
   pageChanged(pageNumber: number) {
     this.pageNumber = pageNumber;
-    this.router.navigate(['/articles'], { queryParams: { p: pageNumber } });
+    this.router.navigate(['/article'], { queryParams: { p: pageNumber } });
+    this.backToTop(false);
   }
 
   updateUrl(e: any) {
     e.target.src = this.defaultImg;
   }
 
-  backToTop(): void {
+  backToTop(smooth: boolean = true): void {
     window.scroll({
       top: 0,
       left: 0,
-      behavior: 'smooth',
+      behavior: smooth ? 'smooth' : 'auto',
     });
   }
 
   fetchSingleArticleToGetCoverImageUrl(articleClone: any): any {
-    this.fetchArticleService.fetchArticle(articleClone.url).valueChanges.subscribe((result: any) => {
+    this.articleService.fetchArticle(articleClone.url).valueChanges.subscribe((result: any) => {
       articleClone.coverImageUrl = result?.data?.article?.coverImageUrl;
     });
   }
@@ -51,7 +51,7 @@ export class ArticlesComponent implements OnInit {
         this.pageNumber = parseInt(params.p);
       }
 
-      this.fetchArticleService.fetchArticles(this.pageNumber).valueChanges.subscribe((res: any) => {
+      this.articleService.fetchArticles(this.pageNumber).valueChanges.subscribe((res: any) => {
         const { data: { articles = [] } = {}, error } = res;
         const newsYCombinatorUrl = `https://news.ycombinator.com`;
 
@@ -81,19 +81,14 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-  constructor(
-    private fetchArticleService: FetchArticleService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private loadingService: LoadingService
-  ) {}
+  constructor(private articleService: ArticleService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       if (params.p) {
         this.pageNumber = parseInt(params.p);
       }
-      this.router.navigate(['/articles'], { queryParams: { p: this.pageNumber } });
+      this.router.navigate(['/article'], { queryParams: { p: this.pageNumber } });
     });
     this.fetchArticles();
   }

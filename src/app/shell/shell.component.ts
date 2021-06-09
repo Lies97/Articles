@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { LoadingService } from '@app/@shared/loader/loader.service';
 
 @Component({
@@ -6,9 +6,9 @@ import { LoadingService } from '@app/@shared/loader/loader.service';
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss'],
 })
-export class ShellComponent implements AfterViewInit {
+export class ShellComponent implements AfterViewChecked {
   constructor(public loadingService: LoadingService, private cdr: ChangeDetectorRef) {}
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
     this.cdr.detectChanges();
   }
 }

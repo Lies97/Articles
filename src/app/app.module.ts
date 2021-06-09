@@ -12,10 +12,10 @@ import { InMemoryCache } from '@apollo/client/core';
 import { environment } from '@env/environment';
 import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
-import { ArticlesModule } from './articles/articles.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ArticleModule } from './@module/article/article.module';
 
 @NgModule({
   imports: [
@@ -28,7 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     SharedModule,
     ShellModule,
-    ArticlesModule,
+    ArticleModule,
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

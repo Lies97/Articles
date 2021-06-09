@@ -7,14 +7,15 @@ describe('Article', () => {
   });
 
   it('should renders Article list', () => {
-    cy.location('pathname').should('include', 'articles');
+    expect(cy.url().should('include', '/article?p='));
   });
 
-  it('should redirect to Article detail', () => {
+  it('should redirect to the first article detail', () => {
     cy.intercept(apiUrl).as('getArticles');
     cy.wait(`@getArticles`).its('response.statusCode').should('eq', 200);
     cy.wait(2000);
     cy.get(`.most-view-articles > .card:first`).click();
+    expect(cy.url().should('include', '/article/detail?url='));
   });
 
   it('should hide the back to top button when the page on top', () => {

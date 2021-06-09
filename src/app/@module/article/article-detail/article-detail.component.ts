@@ -1,23 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Article } from '@app/articleModel/article';
-import { FetchArticleService } from '@app/articles/fetch-article.service';
+import { Article } from '@app/@model/article';
 import { Location } from '@angular/common';
+import { ArticleService } from '@app/@service';
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss'],
+  selector: 'app-article-detail',
+  templateUrl: './article-detail.component.html',
+  styleUrls: ['./article-detail.component.scss'],
 })
-export class ArticleComponent implements OnInit {
+export class ArticleDetailComponent implements OnInit {
   article: Article;
-  defaultImg = 'assets/defaultImage.png';
   error: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private fetchArticleService: FetchArticleService,
-    private location: Location
-  ) {}
+  constructor(private route: ActivatedRoute, private articleService: ArticleService, private location: Location) {}
 
   goBack(): void {
     this.location.back();
@@ -29,7 +24,7 @@ export class ArticleComponent implements OnInit {
 
   fetchArticle() {
     this.route.queryParams.subscribe((params: any) => {
-      this.fetchArticleService.fetchArticle(params.url).valueChanges.subscribe((res: any) => {
+      this.articleService.fetchArticle(params.url).valueChanges.subscribe((res: any) => {
         const { data: { article = [] } = {}, loading, error } = res;
 
         if (error) {

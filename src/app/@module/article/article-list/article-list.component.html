@@ -10,7 +10,7 @@
       <div
         class="card card-wrapper d-flex justify-content-end w-100 w-lg-26"
         [style.background-image]="getMostViewedImg(mostViewedArticles[0].coverImageUrl)"
-        [routerLink]="['/article']"
+        [routerLink]="['detail']"
         [queryParams]="{ url: mostViewedArticles[0].url }"
       >
         <app-most-viewed-articles [article]="mostViewedArticles[0]"></app-most-viewed-articles>
@@ -18,7 +18,7 @@
       <div
         class="card card-wrapper d-flex justify-content-end w-100 w-lg-26"
         [style.background-image]="getMostViewedImg(mostViewedArticles[1].coverImageUrl)"
-        [routerLink]="['/article']"
+        [routerLink]="['detail']"
         [queryParams]="{ url: mostViewedArticles[1].url }"
       >
         <app-most-viewed-articles [article]="mostViewedArticles[1]"></app-most-viewed-articles>
@@ -26,7 +26,7 @@
       <div
         class="card card-wrapper d-flex justify-content-end w-100 w-lg-44"
         [style.background-image]="getMostViewedImg(mostViewedArticles[2].coverImageUrl)"
-        [routerLink]="['/article']"
+        [routerLink]="['detail']"
         [queryParams]="{ url: mostViewedArticles[2].url }"
       >
         <app-most-viewed-articles [article]="mostViewedArticles[2]"></app-most-viewed-articles>
@@ -48,13 +48,15 @@
               alt="Article Card"
               class="card-img-top embed-responsive-item text-center pt-3"
               (error)="updateUrl($event)"
+              [routerLink]="['detail']"
+              [queryParams]="{ url: article?.url }"
             />
           </div>
           <div class="card-body px-0">
             <h6 class="card-title mb-0 min-h-38px">{{ article?.title }}</h6>
             <div class="text-wrapper">
               <p class="my-2 truncate card-text px-0">{{ article?.description }}</p>
-              <span class="go-to-post-wrapper" [routerLink]="['/article']" [queryParams]="{ url: article?.url }">
+              <span class="go-to-post-wrapper" [routerLink]="['detail']" [queryParams]="{ url: article?.url }">
                 <a class="card-text px-0 d-inline-block color-primary"> Go to post </a>
                 <i class="fas fa-arrow-right ml-3 color-primary"></i>
               </span>
