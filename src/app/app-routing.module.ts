@@ -7,7 +7,6 @@ import { LoadingInterceptor } from './loadingInterceptor';
 const routes: Routes = [
   Shell.childRoutes([
     { path: '', loadChildren: () => import('./articles/articles.module').then((m) => m.ArticlesModule) },
-    { path: 'about', loadChildren: () => import('./about/about.module').then((m) => m.AboutModule) },
     { path: 'article', loadChildren: () => import('./article/article.module').then((m) => m.ArticleModule) },
   ]),
   // Fallback when no prior route is matched
